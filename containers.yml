@@ -1,0 +1,10 @@
+---
+- name: oracle-12c
+  image: mritschel/docker-oracle12c-apex5
+  ports: ['1521:1521', '8080:8080', '9090:9090']
+- name: redis-01
+  image: redis
+  ports: ['6379:6379']
+- name: rabbit
+  image: rabbitmq
+  ports: ['15672:15672']
