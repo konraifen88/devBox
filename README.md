@@ -9,13 +9,13 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 All init scripts for the Oracle DB can be found inside the oracle/ directory.
 
 To start the box run
-	
-	```
-	vagrant up
-	```
-	
+
+```
+vagrant up
+```
+
 After some changes inside the Vagrantfile run
 
-	```
-	vagrant up --provision
-	```
+```
+vagrant up --provision
+```
