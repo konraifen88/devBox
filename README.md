@@ -1,14 +1,21 @@
-# Vagrant Docker
+# Vagrant Docker Image
 
-Vagrant File for using multiple Docker images.
-Baseimage imported from Github User [lowescott](https://github.com/lowescott).
+Vagrantfile to start a Vagrant box. Inside the box docker will be installed and the following services will be pulled and run:
 
-Adapted to my needs to start following Docker images:
- 
- * [docker-oracle12c-apex5](https://hub.docker.com/r/mritschel/docker-oracle12c-apex5/) of user "mritschel"
- * offical [Redis](https://hub.docker.com/_/redis/) image
- * offical [RabbitMQ](https://hub.docker.com/_/rabbitmq/) image 
+* [Oracle-12c](https://hub.docker.com/r/sath89/oracle-12c/) of Docker-Hub user sath89
+* [Redis](https://hub.docker.com/_/redis/) offical Redis image from Docker-Hub
+* [RabbitMQ](https://hub.docker.com/_/rabbitmq/) offical RabbitMQ image from Docker-Hub
 
-## HowTo
+All init scripts for the Oracle DB can be found inside the oracle/ directory.
 
-TODO... currently behind a proxy and having some issues with it. Trying it at home.
+To start the box run
+	
+	```
+	vagrant up
+	```
+	
+After some changes inside the Vagrantfile run
+
+	```
+	vagrant up --provision
+	```
