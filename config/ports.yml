@@ -1,0 +1,30 @@
+# Explanation of vars:
+#   guest: the port on the guest-system.
+#   host: the port on the host-system.
+#   autocorrect: if set to true, the port will be changed if the port on the host system is already assigned.
+#                The new port number will be shown while starting the vm.
+---
+# Redis main port.
+- guest: 6379
+  host: 6379
+  autocorrect: true
+# RabbitMQ Management Plugin (Webconsole)
+- guest: 15672
+  host: 15672
+  autocorrect: true
+# Erlang makes use of a Port Mapper Daemon (epmd) for resolution of node names in a cluster. Nodes must be able to reach each other and the port mapper daemon for clustering to work.
+- guest: 4369
+  host: 4369
+  autocorrect: true
+# RabbitMQ main port.
+- guest: 5672
+  host: 5672
+  autocorrect: true
+# Oracle Apex and Oracle Enterprise Management console port.
+- guest: 8080
+  host: 8090
+  autocorrect: true
+# Oracle12c main port.
+- guest: 1521
+  host: 1521
+  autocorrect: true

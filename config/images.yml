@@ -1,0 +1,17 @@
+
+---
+# Redis image, for more information see: https://hub.docker.com/_/redis/
+- name: "redis"
+  image: "redis:3.2"
+  args: "-v '/var/redis/data:/data' -p '6379:6379'"
+  cmd: "redis-server --appendonly yes"
+# RabbitMQ image, for more information see: https://hub.docker.com/_/rabbitmq/
+- name: "rabbitmq"
+  image: "rabbitmq:3-management"
+  args: "-d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password -p '15672:15672' -p '4369:4369' -p '5672:5672'"
+  cmd: 
+# Oracle 12c image, for more information see: https://hub.docker.com/r/sath89/oracle-12c/
+- name: "oracle"
+  image: "sath89/oracle-12c"
+  args: "-d -p 1521:1521 -p 8080:8080 -v /init/oracle:/docker-entrypoint-initdb.d -e IMPORT_FROM_VOLUME=true"
+  cmd: 
