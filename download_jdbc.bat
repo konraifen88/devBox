@@ -1,0 +1,1 @@
+vagrant ssh -c 'mkdir /vagrant/jdbc_driver;docker cp $(docker ps -aqf "name=oracle"):/u01/app/oracle-product/12.1.0/xe/jdbc/lib/ojdbc7.jar /vagrant/jdbc_driver'
