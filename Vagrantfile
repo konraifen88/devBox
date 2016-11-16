@@ -7,37 +7,37 @@ require 'yaml'
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# not using "ubuntu/xenial64" because the ubuntu verion doesn't have enough hdd space.
 	config.vm.box = "bento/ubuntu-16.04"
-	config.vm.box_check_update = false
+	config.vm.box_check_update = true
 	config.vm.provider "virtualbox" do |vm|
 		vm.memory = 8192
 		vm.cpus = 4
+		vm.name = "devBox"
 	end
 	
 	# Setting up proxy settings, only set proxy when proxy is configured as system variable
+	# Proxy settings have to be configured with cntlm
+	host = Socket.gethostname
 	if Vagrant.has_plugin?("vagrant-proxyconf")
-		if ENV['HTTP_PROXY']
-			config.proxy.http     = ENV['HTTP_PROXY']
-		elseif ENV['http_proxy']
-			config.proxy.http     = ENV['http_proxy']
+		if ENV['HTTP_PROXY'] || ENV['http_proxy']
+			config.proxy.http = "http://10.0.2.2:3128/"
 		end
-		
-		if ENV['HTTPS_PROXY']
-			config.proxy.http     = ENV['HTTPS_PROXY']
-		elseif ENV['https_proxy']
-			config.proxy.http     = ENV['https_proxy']
+		if ENV['HTTPS_PROXY'] || ENV['https_proxy']
+			config.proxy.https = "http://10.0.2.2:3128/"
 		end
-		
-		if ENV['NO_PROXY']
-			config.proxy.http     = ENV['NO_PROXY']
-		elseif ENV['no_proxy']
-			config.proxy.http     = ENV['no_proxy']
+		if ENV['NO_PROXY'] || ENV['no_proxy']
+			config.proxy.no_proxy  = "/var/run/docker.sock,localhost,127.0.0.1"
 		end
 	else
 		puts "### vagrant-proxyconf plugin not installed ###"
 		puts "Install with following command:"
 		puts ""
-		puts "vagrant plugin install vagrant-proxyconf"
+		puts "	vagrant plugin install vagrant-proxyconf"
 		puts ""
+	end
+
+	# Only run script when a proxy is set.
+	if ENV['HTTP_PROXY'] || ENV['http_proxy'] || ENV['HTTPS_PROXY'] || ENV['https_proxy']
+		config.vm.provision "shell", inline: "/vagrant/init/conf_proxy_extra.sh"
 	end
 	
 	# Open Ports and setting IP-address. (if you want, you can add the IP to your hosts file)
@@ -50,9 +50,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			auto_correct: ports["autocorrect"]
 	end
 	
-	# Add a extra synced folder, otherwise the 'docker-entrypoint-initdb.d' was empty
-	config.vm.synced_folder "oracle/", "/init/oracle/"
-		
+	# Need to install docker before adding images, that proxys will be set.
+	# If not doing so, the script will fail.
+	config.vm.provision "docker" do |docker|
+	end
+	
 	# Start docker container
 	images = YAML.load_file('config/images.yml')
 	config.vm.provision "docker" do |docker|

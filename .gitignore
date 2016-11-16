@@ -1,4 +1,11 @@
 .vagrant/
 .idea/
 *.log
+
+# Exclude downloaded jdbc_driver
 jdbc_driver/
+
+# Exclude all Certificates
+*.crt
+*.pem
+*.cer

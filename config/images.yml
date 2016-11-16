@@ -17,5 +17,5 @@
 # Oracle 12c image, for more information see: https://hub.docker.com/r/sath89/oracle-12c/
 - name: "oracle"
   image: "sath89/oracle-12c"
-  args: "-d -p 1521:1521 -p 8080:8080 -v /init/oracle:/docker-entrypoint-initdb.d -e IMPORT_FROM_VOLUME=true"
+  args: "-d -p 1521:1521 -p 8080:8080 -v /vagrant/oracle:/docker-entrypoint-initdb.d -e IMPORT_FROM_VOLUME=true"
   cmd: 
