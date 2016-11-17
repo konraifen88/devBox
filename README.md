@@ -9,16 +9,6 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 
 All init scripts for the Oracle DB can be found inside the /init/oracle/ directory.
 
-This is the "normal" version of this repo. This can be used without proxies set or with proxies set like:
-
-    <proxy>:<port>
-    
-    or
-    
-    <username>:<password>@<proxy>:<port>
-    
-If you are using cntlm to config your proxy, please chekout branch: cntlm_config 
-
 ## Needed Software
 
 * Oracle VM Virtualbox 5.1.8 - [download](http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe)
@@ -32,7 +22,7 @@ Other versions of Virtualbox and Vagrant may run, too.
 If you are behind a cooperational proxy you may need their root certificate. 
 See [HOWTO](init/certificates/HOWTO.md) for more information.
 
-``` shell
+```bash
 git clone https://github.com/konraifen88/vagrant_docker.git
 cd vagrant docker
 # if using local proxy with cntlm do:
@@ -43,29 +33,29 @@ vagrant up
 Vagrant should now download base image and install docker with the containers in it.
 The first startup will take a very long time. Do not interrupt the process, you will get the terminal back if everything is downloaded.
 When finished downloading, the database will still startup!
-A script is attached to Vagrantfile which will check if the Database is fully running. 
+Check docker logs (more information within Usage) for the following if finished:
 
-Hint:
-When this script is running, there will be a check all 5 seconds if DB is sucessfully up. But if there is a problem during setting up, the script will run infinitely, then you can break it with 'ctrl + c'.
-
+	...
+	Import finished
+	Database ready to use. Enjoy! ;)
 
 ## Usage
 
 ### Start the Box
 
-``` shell
+```
 vagrant up
 ```
 
 ### Stop the Box
 
-``` shell
+```
 vagrant halt
 ```
 
 ### Check docker logs
 
-``` shell
+```
 # Vagrant have to be running
 vagrant ssh
 # inside devBox do:
@@ -76,7 +66,7 @@ docker logs <ID of container, see output docker ps>
 ### Adding new data or change the box
 See section 'Known Bugs' when adding data to Oracle DB
 
-``` shell
+```
 vagrant up --provision
 ```
 
