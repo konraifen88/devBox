@@ -15,29 +15,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 	
 	# Setting up proxy settings, only set proxy when proxy is configured as system variable
+	# Proxy settings have to be configured with cntlm
+	host = Socket.gethostname
 	if Vagrant.has_plugin?("vagrant-proxyconf")
-		if ENV['HTTP_PROXY']
-			config.proxy.http     = ENV['HTTP_PROXY']
-		elseif ENV['http_proxy']
-			config.proxy.http     = ENV['http_proxy']
+		if ENV['HTTP_PROXY'] || ENV['http_proxy']
+			config.proxy.http = "http://10.0.2.2:3128/"
 		end
-
-		if ENV['HTTPS_PROXY']
-			config.proxy.http     = ENV['HTTPS_PROXY']
-		elseif ENV['https_proxy']
-			config.proxy.http     = ENV['https_proxy']
+		if ENV['HTTPS_PROXY'] || ENV['https_proxy']
+			config.proxy.https = "http://10.0.2.2:3128/"
 		end
-
-		if ENV['NO_PROXY']
-			config.proxy.http     = ENV['NO_PROXY']
-		elseif ENV['no_proxy']
-			config.proxy.http     = ENV['no_proxy']
+		if ENV['NO_PROXY'] || ENV['no_proxy']
+			config.proxy.no_proxy  = "/var/run/docker.sock,localhost,127.0.0.1"
 		end
 	else
 		puts "### vagrant-proxyconf plugin not installed ###"
 		puts "Install with following command:"
 		puts ""
-		puts "vagrant plugin install vagrant-proxyconf"
+		puts "	vagrant plugin install vagrant-proxyconf"
 		puts ""
 	end
 
