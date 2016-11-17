@@ -66,5 +66,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		end
 	end
 
+	config.vm.provision "shell", inline: "/vagrant/init/check_db.sh"
 end
 
