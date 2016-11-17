@@ -28,3 +28,7 @@
 - guest: 1521
   host: 1521
   autocorrect: true
+# Redis-Manager port.
+- guest: 8081
+  host: 8091
+  autocorrect: true
