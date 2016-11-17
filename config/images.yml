@@ -21,6 +21,6 @@
   cmd: "redis-server --appendonly yes"
 # Redis Commander, for more information see: https://hub.docker.com/r/schickling/redis-commander/
 - name: "redis-commander"
-  image: "schickling/redis-commander"
+  image: "tenstartups/redis-commander"
   args: "-d --link redis:redis -p 8081:8081"
-  cmd:
+  cmd: "--redis-host redis"
