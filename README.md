@@ -9,6 +9,16 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 
 All init scripts for the Oracle DB can be found inside the /init/oracle/ directory.
 
+This is the "normal" version of this repo. This can be used without proxies set or with proxies set like:
+
+    <proxy>:<port>
+    
+    or
+    
+    <username>:<password>@<proxy>:<port>
+    
+If you are using cntlm to config your proxy, please chekout branch: cntlm_config 
+
 ## Needed Software
 
 * Oracle VM Virtualbox 5.1.8 - [download](http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe)
