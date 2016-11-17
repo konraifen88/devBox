@@ -4,7 +4,7 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 
 * [Oracle-12c](https://hub.docker.com/r/sath89/oracle-12c/) of Docker-Hub user sath89
 * [Redis](https://hub.docker.com/_/redis/) offical Redis image from Docker-Hub
-* [Redis Commander](https://hub.docker.com/r/schickling/redis-commander/) of Docker-Hub user schickling
+* [Redis Commander](https://hub.docker.com/r/tenstartups/redis-commander/) of Docker-Hub user tenstartups
 * [RabbitMQ](https://hub.docker.com/_/rabbitmq/) offical RabbitMQ image from Docker-Hub
 
 All init scripts for the Oracle DB can be found inside the /init/oracle/ directory.
