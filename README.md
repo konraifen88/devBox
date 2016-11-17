@@ -9,7 +9,15 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 
 All init scripts for the Oracle DB can be found inside the /init/oracle/ directory.
 
-This is the cntlm version of the repo. If you have your proxy configured with cntlm, then you should use this branch.
+This is the "normal" version of this repo. This can be used without proxies set or with proxies set like:
+
+    <proxy>:<port>
+    
+    or
+    
+    <username>:<password>@<proxy>:<port>
+    
+If you are using cntlm to config your proxy, please chekout branch: cntlm_config 
 
 ## Needed Software
 
