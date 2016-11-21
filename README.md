@@ -24,6 +24,8 @@ Other versions of Virtualbox and Vagrant may run, too.
 If you are behind a cooperational proxy you may need their root certificate. 
 See [HOWTO](init/certificates/HOWTO.md) for more information.
 
+To be able to Download the basebox, you have to set http_proxy and https_proxy!
+
 ``` shell
 git clone https://github.com/konraifen88/vagrant_docker.git
 cd vagrant docker
@@ -70,6 +72,23 @@ See section 'Known Bugs' when adding data to Oracle DB
 ``` shell
 vagrant up --provision
 ```
+	
+## Possible Errors
+	
+	Error:
+	Not Able to Download/Install the Docker in Vagrant Base-Box.
+	
+	Possible Fix:
+	Check if http_proxy and https_proxy are set correctly (both has to be set!)
+	
+	---------------------------------------
+	
+	Bug:
+	Download of Docker Images fails with x509-Error
+	
+	Solution:
+	Check [HOWTO](init/certificates/HOWTO.md) to download the correct certificates.
+	
 
 ## Known Bugs
 
