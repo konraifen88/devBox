@@ -9,8 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.box = "bento/ubuntu-16.04"
 	config.vm.box_check_update = true
 	config.vm.provider "virtualbox" do |vm|
-		vm.memory = 8192
-		vm.cpus = 4
+		vm.memory = 2048
+		vm.cpus = 2
 		vm.name = "devBox"
 	end
 	
