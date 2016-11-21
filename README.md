@@ -30,7 +30,7 @@ To be able to Download the basebox, you have to set http_proxy and https_proxy!
 git clone https://github.com/konraifen88/vagrant_docker.git
 cd vagrant docker
 # if using local proxy with cntlm do:
-# git checkout cntlm_config
+git checkout cntlm_config
 vagrant up
 ```
 
@@ -83,11 +83,22 @@ vagrant up --provision
 	
 	---------------------------------------
 	
-	Bug:
+	Error:
 	Download of Docker Images fails with x509-Error
 	
 	Solution:
 	Check [HOWTO](init/certificates/HOWTO.md) to download the correct certificates.
+	
+	----------------------------------------
+	
+	Error:
+	When getting following error:
+		gpg: error reading key: public key not found
+		
+	Solution:
+	Download gpg by yourself at [Keyserver](http://pgp.mit.edu/pks/lookup?op=get&options=mr&search=0x58118E89F3A912897C070ADBF76221572C52609D)
+	and save it to
+		<project_dir>/init/gpgkey.asc
 	
 
 ## Known Bugs

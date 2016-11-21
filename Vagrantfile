@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.provider "virtualbox" do |vm|
 		vm.memory = 8192
 		vm.cpus = 4
-		vm.name = "devBox2"
+		vm.name = "devBox"
 	end
 	
 	unless Vagrant.has_plugin?("vagrant-vbguest")
