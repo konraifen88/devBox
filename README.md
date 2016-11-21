@@ -9,15 +9,21 @@ Vagrantfile to start a Vagrant box. Inside the box docker will be installed and 
 
 All init scripts for the Oracle DB can be found inside the /init/oracle/ directory.
 
-This is the "normal" version of this repo. This can be used without proxies set or with proxies set like:
+This is the "normal" version of this repo. This can be used without proxies or with proxies set like:
 
     <proxy>:<port>
     
     or
     
     <username>:<password>@<proxy>:<port>
-    
+	
 If you are using cntlm to config your proxy, please chekout branch: cntlm_config 
+
+To be able to run behind a proxy, you have to install the vagrant-proxyconf plugin using:
+
+	```
+	vagrant plugin install vagrant-proxyconf
+	```
 
 ## Needed Software
 
@@ -34,9 +40,7 @@ See [HOWTO](init/certificates/HOWTO.md) for more information.
 
 ``` shell
 git clone https://github.com/konraifen88/vagrant_docker.git
-cd vagrant docker
-# if using local proxy with cntlm do:
-# git checkout cntlm_config
+cd vagrant_docker
 vagrant up
 ```
 
@@ -78,6 +82,34 @@ See section 'Known Bugs' when adding data to Oracle DB
 ``` shell
 vagrant up --provision
 ```
+	
+## Possible Errors
+	
+	Error:
+	Not Able to Download/Install the Docker in Vagrant Base-Box.
+	
+	Possible Fix:
+	Check if http_proxy and https_proxy are set correctly (both has to be set!)
+	
+	---------------------------------------
+	
+	Error:
+	Download of Docker Images fails with x509-Error
+	
+	Solution:
+	Check [HOWTO](init/certificates/HOWTO.md) to download the correct certificates.
+	
+	----------------------------------------
+	
+	Error:
+	When getting following error:
+		gpg: error reading key: public key not found
+		
+	Solution:
+	Download gpg by yourself at [mit.edu](http://pgp.mit.edu/pks/lookup?op=get&options=mr&search=0x58118E89F3A912897C070ADBF76221572C52609D)
+	and save it to
+		<project_dir>/init/gpgkey.asc
+	
 
 ## Known Bugs
 
