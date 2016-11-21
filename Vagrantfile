@@ -14,6 +14,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		vm.name = "devBox"
 	end
 	
+	unless Vagrant.has_plugin?("vagrant-vbguest")
+		raise Vagrant::Errors::VagrantError.new, "\
+		Plugin missing: vagrant-vbguest\n\
+		Intstall with following command:\n\n\
+		vagrant plugin install vagrant-vbguest"
+	end
+	
 	# Setting up proxy settings, only set proxy when proxy is configured as system variable
 	if Vagrant.has_plugin?("vagrant-proxyconf")
 		if ENV['HTTP_PROXY']
