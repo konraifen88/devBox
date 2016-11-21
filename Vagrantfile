@@ -11,7 +11,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.provider "virtualbox" do |vm|
 		vm.memory = 8192
 		vm.cpus = 4
-		vm.name = "devBox"
+		vm.name = "devBox2"
+	end
+	
+	unless Vagrant.has_plugin?("vagrant-vbguest")
+
+		raise Vagrant::Errors::VagrantError.new, "\
+		Plugin missing: vagrant-vbguest\n\
+		Intstall with following command:\n\n\
+		vagrant plugin install vagrant-vbguest"
 	end
 	
 	# Setting up proxy settings, only set proxy when proxy is configured as system variable
@@ -28,11 +36,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			config.proxy.no_proxy  = "/var/run/docker.sock,localhost,127.0.0.1"
 		end
 	else
-		puts "### vagrant-proxyconf plugin not installed ###"
-		puts "Install with following command:"
-		puts ""
-		puts "	vagrant plugin install vagrant-proxyconf"
-		puts ""
+		raise Vagrant::Errors::VagrantError.new, "\
+		Plugin missing: vagrant-proxyconf\
+		Intstall with following command:\n\n\
+		vagrant plugin install vagrant-proxyconf"
 	end
 
 	# Only run script when a proxy is set.
